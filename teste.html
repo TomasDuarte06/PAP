@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <style>
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+    <h1>QR Code Generator</h1>
+    <div>
+        <label for="url">Enter a link:</label>
+        <input type="text" id="url" name="url">
+        <button onclick="generateQRCode()">Generate QR Code</button>
+        <button onclick="printQRCode()">Print QR Code</button>
+        <button onclick="clearSavedUrl()">Clear Saved URL</button>
+    </div>
+    <div id="qrcode-container" class="center"></div>
+
+    <script>
+        function generateQRCode() {
+            const url = localStorage.getItem("url") || document.getElementById("url").value;
+            const qrCodeContainer = document.getElementById("qrcode-container");
+
+            if (!url) {
+                alert("Please enter a link.");
+                return;
+            }
+
+            qrCodeContainer.innerHTML = "";
+            new QRCode(qrCodeContainer, {
+                text: url,
+                width: 250,
+                height: 250
+            });
+
+            localStorage.setItem("url", url);
+        }
+
+    function printQRCode() {
+    const printWindow = window.open('', '_blank');
+    const qrCodeContainer = document.getElementById("qrcode-container");
+    const qrCodeImage = qrCodeContainer.getElementsByTagName("img")[0];
+
+    qrCodeImage.onload = function () {
+        printWindow.document.write(`<html><head><title>Print QR Code</title><style>@media print { img { width: 80mm; height: auto; } }</style></head><body><img src="${qrCodeImage.src}" alt="QR Code" /></body></html>`);
+        printWindow.document.close();
+
+        printWindow.print();
+        printWindow.onafterprint = function() {
+            printWindow.close();
+        };
+    };
+
+  qrCodeImage.src = qrCodeImage.src;
+}
+
+
+        function clearSavedUrl() {
+            localStorage.removeItem("url");
+            document.getElementById("url").value = "";	
+        }
+    </script>
+</body>
+</html>
