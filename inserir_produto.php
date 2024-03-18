@@ -355,14 +355,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["bt"])) {
 }
 ?>
 
-							<!-- Seu formulário com os
+					
 	
 
 
 
 
 
-        <!-- Restante do seu formulário aqui -->
+    
 						</div>
 			</section>
 

@@ -301,8 +301,8 @@
 											<label class="col-lg-3 control-label text-lg-end pt-2"
 												for="inputDefault">Observacoes</label>
 											<div class="col-lg-6">
-												<input type="text" name="observacoes"
-													value="<?php echo $row['observacoes']; ?>" class="form-control">
+											<textarea name="observacoes" rows="3" class="form-control"><?php echo $row['observacoes']; ?></textarea>
+
 											</div>
 										</div>
 									</div>
