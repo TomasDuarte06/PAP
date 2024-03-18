@@ -1,4 +1,3 @@
-
 <?php
 // CONECTA COM A BASE DE DADOS
 include 'DBConnection.php';
